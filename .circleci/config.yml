@@ -74,3 +74,7 @@ workflows:
       - backend-lint:
           requires:
             - frontend-lint
+
+      - deploy-code:
+          requires:
+            - backend-lint

@@ -1,0 +1,10 @@
+The Infrastruture uses AWS Cloud for hosting purpose:
+
+1) Elastic Beanstalk: It is used to host the backend API built on nodejs.
+
+2) S3 Bucket: To host the frontend static files, The bucket policy is changes to make it accessible from the frontend.
+
+3) Amazon RDS: RDS Server is used to store the database of the application
+
+Frontend URL: http://udagramfullstack165.s3-website-us-west-2.amazonaws.com/
+Backend URL : http://udagramfullstack165-env.eba-nrpdcqxs.us-west-2.elasticbeanstalk.com/

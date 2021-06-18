@@ -1,0 +1,11 @@
+CI/CD Process:
+
+1) Github is used as a collaboration platform and to keep the code repository.
+
+2) Circle CI is used for the Integration and Deployment Purposes.
+
+Whenever a Code is push to github, CircleCI gets triggered and the Frontend build is made and deployed to the server.
+
+Steps:
+
+Code Push ---> Github ---> CircleCI Trigger ---> Linting check code ---> Unit Tests ---> Deployment

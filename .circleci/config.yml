@@ -25,20 +25,6 @@ jobs:
           name: Testing
           command: cd udagram-frontend && npm run build
 
-  frontend-test:
-    docker:
-      - image: circleci/node:10-browsers
-    steps:
-      - checkout
-      # Install project dependencies
-      - run:
-          name: Install local dependencies
-          command: cd udagram-frontend && npm install
-
-      - run:
-          name: Testing
-          command: cd udagram-frontend && npm run e2e
-
   backend-lint:
     docker:
       - image: circleci/node:10-browsers
@@ -53,28 +39,28 @@ jobs:
           name: Testing
           command: cd udagram-api && npm run build
 
-  # deploy-frontend:
-  #   docker:
-  #     - image: python:3.7-alpine3.11
-  #   steps:
-  #     - checkout
-  #     - run:
-  #         name: Install system dependencies
-  #         command: |
-  #           apk add --no-cache curl
-  #           apk add --no-cache --upgrade bash
-  #           apk add --no-cache --update npm
-  #           pip3 install awscli
-  #     - run:
-  #         name: Frontend Build
-  #         command: |
-  #           cd frontend
-  #           npm install
-  #           npm run build
-  #     - run:
-  #         name: S3 Bucket
-  #         command: |
-  #           aws s3 sync ./frontend/dist s3://udapeople-${CIRCLE_WORKFLOW_ID}/
+  deploy-code:
+    docker:
+      - image: python:3.7-alpine3.11
+    steps:
+      - checkout
+      - run:
+          name: Install system dependencies
+          command: |
+            apk add --no-cache curl
+            apk add --no-cache --upgrade bash
+            apk add --no-cache --update npm
+            pip3 install awscli
+      - run:
+          name: Frontend Build
+          command: |
+            cd udagram-frontend
+            npm install
+            npm run build
+      - run:
+          name: S3 Bucket
+          command: |
+            aws s3 sync ./udagram-frontend/www s3://${BUCKET_NAME}/
 
 workflows:
   default:
@@ -85,10 +71,6 @@ workflows:
           requires:
             - hello-world
 
-      - frontend-test:
-          requires:
-            - frontend-lint
-
       - backend-lint:
           requires:
-            - frontend-test
+            - frontend-lint

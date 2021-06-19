@@ -96,7 +96,7 @@ workflows:
 
       - deploy-frontend-code:
           requires:
-            - frontned-lint
+            - frontend-lint
 
       - deploy-backend-code:
           requires:

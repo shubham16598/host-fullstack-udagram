@@ -4,12 +4,12 @@
   "description": "Project level Package",
   "main": "index.js",
   "scripts": {
-    "frontend:build": "cd udagram-api && npm run build && cd ..",
-    "frontend:install": "cd udagram-api && npm install && cd ..",
-    "frontend:test": "cd udagram-api && npm run test && cd ..",
-    "backend:build": "cd udagram-frontend && npm run build && cd ..",
-    "backend:install": "cd udagram-frontend && npm install && cd ..",
-    "backend:test": "cd udagram-frontend && npm run test && cd .."
+    "frontend:build": "cd udagram-frontend && npm run build && cd ..",
+    "frontend:install": "cd udagram-frontend && npm install && cd ..",
+    "frontend:test": "cd udagram-frontend && npm run test && cd ..",
+    "backend:build": "cd udagram-api && npm run build && cd ..",
+    "backend:install": "cd udagram-api && npm install && cd ..",
+    "backend:test": "cd udagram-api && npm run test && cd .."
   },
   "repository": {
     "type": "git",

@@ -84,6 +84,7 @@ jobs:
           name: Deploy Backend
           command: |
             cd udagram-api/www/
+            cp -r ../.elasticbeanstalk .
             eb deploy ${BACKEND_ENV}
 
 workflows:

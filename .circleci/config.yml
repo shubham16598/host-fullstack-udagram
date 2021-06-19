@@ -82,7 +82,9 @@ jobs:
           command: npm run backend:build
       - run:
           name: Deploy Backend
-          command: eb deploy
+          command: |
+            cd udagram-api
+            eb deploy
 
 workflows:
   default:

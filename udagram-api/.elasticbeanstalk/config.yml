@@ -1,8 +1,8 @@
 branch-defaults:
   default:
-    environment: ${BACKEND_ENV}
+    environment: udagramfullstack165-env
 global:
-  application_name: udagramfullstack165-env
+  application_name: udagramfullstack165
   branch: null
   default_platform: Node.js 14 running on 64bit Amazon Linux 2/5.4.1
   default_region: us-west-2

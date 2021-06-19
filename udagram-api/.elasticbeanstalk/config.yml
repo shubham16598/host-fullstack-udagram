@@ -1,6 +1,6 @@
 branch-defaults:
   default:
-    environment: udagramfullstack165-env
+    environment: Udagramfullstack165-env
 global:
   application_name: udagramfullstack165
   branch: null
@@ -10,7 +10,9 @@ global:
   instance_profile: null
   platform_name: null
   platform_version: null
-  profile: null
+  profile: eb-cli
   repository: null
   sc: null
   workspace_type: Application
+deploy:
+  artifact: Archive.zip

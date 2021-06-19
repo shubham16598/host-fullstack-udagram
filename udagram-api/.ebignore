@@ -4,7 +4,6 @@ mock
 .dockerignore
 .env
 .eslintrc.json
-www/Archive.zip
 .gitignore
 tsconfig.json
 tslint.json

@@ -68,7 +68,7 @@ jobs:
 
   deploy-backend-code:
     docker:
-      - image: "cimg/base:stable"
+      - image: cimg/base:stable
     steps:
       - node/install
       - eb/setup

@@ -19,11 +19,11 @@ jobs:
       # Install project dependencies
       - run:
           name: Install local dependencies
-          command: cd udagram-frontend && npm install
+          command: npm run frontend:install
 
       - run:
           name: Testing
-          command: cd udagram-frontend && npm run build
+          command: npm run frontend:build
 
   backend-lint:
     docker:
@@ -33,13 +33,13 @@ jobs:
       # Install project dependencies
       - run:
           name: Install local dependencies
-          command: cd udagram-api && npm install
+          command: npm run backend:install
 
       - run:
           name: Testing
-          command: cd udagram-api && npm run build
+          command: npm run backend:build
 
-  deploy-code:
+  deploy-frontend-code:
     docker:
       - image: python:3.7-alpine3.11
     steps:
@@ -54,13 +54,32 @@ jobs:
       - run:
           name: Frontend Build
           command: |
-            cd udagram-frontend
-            npm install
-            npm run build
+            npm run frontend:install
+            npm run frontend:build
+      # - run:
+      #     name: S3 Bucket
+      #     command: |
+      #       aws s3 sync ./udagram-frontend/www s3://${BUCKET_NAME}/
+
+  deploy-backend-code:
+    docker:
+      - image: python:3.7-alpine3.11
+    steps:
+      - checkout
       - run:
-          name: S3 Bucket
+          name: Install system dependencies
           command: |
-            aws s3 sync ./udagram-frontend/www s3://${BUCKET_NAME}/
+            apk add --no-cache curl
+            apk add --no-cache --upgrade bash
+            apk add --no-cache --update npm
+            pip3 install awscli
+      - run:
+          name: Frontend Build
+          command: |
+            npm run backend:install
+            npm run backend:build
+            cd udacity-api/www/
+            eb deploy
 
 workflows:
   default:
@@ -73,8 +92,12 @@ workflows:
 
       - backend-lint:
           requires:
-            - frontend-lint
+            - hello-world
 
-      - deploy-code:
+      - deploy-frontend-code:
+          requires:
+            - frontned-lint
+
+      - deploy-backend-code:
           requires:
             - backend-lint

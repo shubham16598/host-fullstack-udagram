@@ -74,10 +74,14 @@ jobs:
             apk add --no-cache --update npm
             pip3 install awscli
       - run:
-          name: Frontend Build
+          name: Backend Install
+          command: npm run backend:install
+      - run:
+          name: Backend Build
+          command: npm run backend:build
+      - run:
+          name: Deploy Backend
           command: |
-            npm run backend:install
-            npm run backend:build
             cd udacity-api/www/
             eb deploy
 

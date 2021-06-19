@@ -71,8 +71,8 @@ jobs:
           command: |
             sudo apt-get -y -qq update
             sudo apt-get install python3-pip python3-dev build-essential
-            sudo pip install --upgrade setuptools
-            sudo pip install awsebcli --upgrade
+            sudo python3-pip install --upgrade setuptools
+            sudo python3-pip install awsebcli --upgrade
 
       - run:
           name: Backend Install
